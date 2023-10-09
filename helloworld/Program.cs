@@ -4,28 +4,43 @@ class Program
 {
     static void Main(string[] args)
     {
-        int a, b, c;
+        int _number;
+        int num_of_zeros;
 
         do
         {
-            Console.WriteLine("Wpisz liczbe niewieksza niz 100");
-            a = int.Parse(Console.ReadLine());
-        } while (a > 100);
+            Console.WriteLine("Podaj liczbę naturalną: ");
 
-        do
+            _number = int.Parse(Console.ReadLine());
+        } while ((_number <= 0));
+
+        num_of_zeros = (_number.ToString().Length-1);
+
+        double start_scope = 1;
+        double end_scope = 10;
+
+        if(num_of_zeros > 0)
         {
-            Console.WriteLine("Wpisz liczbe niewieksza niz 100");
-            b = int.Parse(Console.ReadLine());
-        } while (b > 100);
+            char lastChar = _number.ToString()[_number.ToString().Length - 1];
+            if (lastChar == '0')
+            {
+                start_scope = Math.Pow(10, num_of_zeros-1)+1;
 
-        do
-        {
-            Console.WriteLine("Wpisz liczbe niewieksza niz 100");
-            c = int.Parse(Console.ReadLine());
-        } while (c > 100);
+                if (start_scope == 2)
+                {
+                    start_scope = 1;
+                }
 
-        Console.WriteLine(a + b + c);
+                end_scope = Math.Pow(10, num_of_zeros);
+            }
+            else {
+                start_scope = Math.Pow(10, num_of_zeros) + 1;
+                end_scope = (start_scope -1) * 10;
+            }
+
+        };
+
+        Console.WriteLine(start_scope + " - " + end_scope);
     }
 
 }
-
